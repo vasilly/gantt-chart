@@ -1,61 +1,66 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>3 may gantt chart</title>
-  <style>
- *{margin:0;padding:0;}
-  li {
-    list-style-type: none;
-}
-html {
-  height: 100%;
-}
+    <meta charset="UTF-8">
+    <title>1 May</title>
+    <style>
+        /*reset*/
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        /*border: 1px solid red;*/
+    }
+
+    ul {
+        list-style-type: none;
+    }
+
+    html {
+        height: 100%;
+        width:100%;
+    }
 body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 100;
   user-select: none;
+  font-size: 16px;
 }
-#tb.tool-buttons .box,
-#tb2.tool-buttons .box {
+#tb .box,
+#tb2 .box {
   width: 2rem;
-  height: .8rem;
+  height: 1.7rem;
   font-size: 1rem;
   margin-right: 1px;
   margin-bottom: 1px;
+  margin-top: -1px;
   margin-left: 0;
   padding-left: 0;
   padding-right: 0;
   border-radius: 0;
   text-align: center;
 }
+#tb2 .box.days {
+  height: 1rem;
+  font-size: .6rem;
+  padding-top: .2rem;
+  padding-bottom: .2rem;
+  background-color: rgba(0, 0, 0, 0.06);
+  margin-top: 27px;
+}
 
-#tb2.tool-buttons .box.days {
-  height: .6rem;
-  font-size: .6rem;
-  padding-top: .2rem;
-  padding-bottom: .2rem;
+#tb .box.light {
   background-color: rgba(0, 0, 0, 0.2);
-  margin-top: 28px;
 }
-#tb2.tool-buttons .box.months {
-  height: .6rem;
-  font-size: .6rem;
-  padding-top: .2rem;
-  padding-bottom: .2rem;
-  background-color: rgba(0, 0, 0, 0.2);
-  margin-top: 228px;
-  float:left;
-}
-#tb.tool-buttons .box.light {
-  background-color: rgba(0, 0, 0, 0.25);
-}
-#tb2.tool-buttons .box.weekend.days {
-  background-color: #222;
+#tb2 .box.weekend.days {
+  /*background-color: #222;*/
+  background-color: rgba(0, 0, 0, 0.04);
+  height: 50.8rem;
+/*z-index: -11;*/
 }
 .window {
-  width: 350px;
+  /*width: 350px;*/
   height: 70px;
   margin: 0px auto;
   position: relative;
@@ -69,7 +74,7 @@ body {
 .window .page.page-front .cover .tool-buttons {
   opacity: 1;
 }
-.window .top-bar .left-action {
+.window .left-action {
   position: absolute;
   top: 0;
   height: 70px;
@@ -77,13 +82,14 @@ body {
   cursor: pointer;
   opacity: .4;
   transition-duration: .3s;
+  left: 0;
+/*border:1px solid blue;*/
+
 }
 .window .top-bar .left-action:hover {
   opacity: 1;
   transition-duration: .1s;
-}
-.window .top-bar .left-action {
-  left: 0;
+
 }
 .window .top-bar .left-action .line {
   position: absolute;
@@ -122,7 +128,9 @@ body {
 .window .top-bar .mid-text .page-saved-stations-title {
   color: #EE0085;
   opacity: 0;
-  transform: scale(0.4);
+  /*transform: scale(0.4);*/
+  transform: translateX(-50px);
+
 }
 .window .page {
   position: absolute;
@@ -198,9 +206,9 @@ body {
   color: #A38AA0;
   font-size: 15px;
   opacity: 0;
-  transform: translateX(-50%);
-  transition-duration: 0s;
-  transition-delay: 0s;
+  /*transform: translateX(-50%);*/
+  /*transition-duration: 0s;*/
+  /*transition-delay: 0s;*/
 }
 .window .page.page-saved-stations .station-list li.active .link,
 .window .page.page-saved-stations .station-list li.active .link:hover {
@@ -218,7 +226,8 @@ body {
 }
 #page-toggle-chk:checked ~ .window .top-bar .page-front-title {
   opacity: 0;
-  transform: scale(0.4);
+  /*transform: scale(0.4);*/
+  transform: translateX(-50px);
 }
 #page-toggle-chk:checked ~ .window .top-bar .page-saved-stations-title {
   opacity: 1;
@@ -236,13 +245,13 @@ body {
 #page-toggle-chk:checked ~ .window .page-saved-stations .station-list li .num {
   opacity: 1;
   transform: none;
-  transition-duration: .3s;
-  transition-delay: .5s;
+  /*transition-duration: .3s;*/
+  /*transition-delay: .5s;*/
 }
 .load-complete .window {
   opacity: 1;
   transform: none;
-  height: 560px;
+  /*height: 100vh;*/
 }
 .load-complete .window .top-bar {
   opacity: 1;
@@ -251,25 +260,30 @@ body {
 .load-complete .window .page.page-front .cover {
   position: relative;
   overflow: auto;
-  height: 500px;
+  height: 100vh;
   opacity: 1;
 }
 .load-transition {
   transition-duration: .5s;
 }
 .load-transition-delay-1 {
-  transition-delay: .3s;
+  transition-delay: .1s;
 }
 .load-transition-delay-2 {
   transition-delay: .6s;
 }
+
+
+
+
+/*vasko */
 .cont {
   margin-top: 80px;
 }
 .barAll {
-  height: 7px;
-  margin-top: 10px;
-  margin-bottom: .25rem;
+  height: 5px;
+  margin-top: 0;
+  margin-bottom: 0.2rem;
   background-color: rgba(255, 255, 255, 0.5);
   z-index: -1000;
 }
@@ -306,10 +320,51 @@ nav {
   margin-left: 10%;
   padding: 0;
 }
+.task-title, .sub-task-title {
+  color:white;
+  padding-left:1rem;
+  /*background-color: rgba(0, 0, 0, 0.2);*/
+  margin-top: 8px;
+}
+.task-title {
+  height: 1.5rem;
+  font-size: 1.2rem;
+  padding-top: .2rem;
+  padding-bottom: .4rem;
+  /*background-color: rgba(0, 0, 0, 0.2);*/
+  margin-top: 8px;
+}
+.sub-task-title {
+    height:1.2rem;
+  font-size: 0.6rem;
+    padding-top: 0.6rem;
+  /*padding-bottom: 0.7rem;*/
+margin:.2rem;
+  /*margin-bottom: 100rem;*/
 
-  </style>
+  /*margin-bottom: 0.0rem;*/
+    /*opacity: 0;*/
+/*border:1px solid yellow;*/
+/*padding:0;*/
+}
+ .sub-task-title:hover {
+    border:1px solid red;
+    height:3rem;
+    font-size: 2rem;
+  /*padding-bottom: 1rem;*/
+margin:0;
+  margin-bottom: 0.3rem;
+    opacity: 1;
+  /*transition-duration: .1s;*/
+  cursor: pointer;
+
+  /*transition-duration: .3s;*/
+/*padding:0;*/
+}
+    </style>
 </head>
 <body>
+
 
 <input id="page-toggle-chk" type="checkbox" style="display: none;"/>
 <div class="window load-transition">
@@ -360,33 +415,27 @@ nav {
         <li class="box days">T</li>
         <li class="box days">F</li>
         <li class="box days weekend">S</li>
-        <li class="box days weekend">S</li>
+        <li class="box days weekend">S          </li>
         <li class="box days light">M</li>
         <li class="box days light">T</li>
         <li class="box days light">W</li>
         <li class="box days light">T</li>
-        <li class="box days light">F</li>
-        <li class="box months ">MAY</li>
-        <li class="box months ">MAY</li>
-        <li class="box months ">MAY</li>
-        <li class="box months ">MAY</li>
-        <li class="box months ">MAY</li>
-      </ul>
-      <ul id="tb2" class="tool-buttons">
-        <li class="box months ">MAY</li>
-        <li class="box months ">MAY</li>
-        <li class="box months ">MAY</li>
-        <li class="box months ">MAY</li>
-        <li class="box months ">MAY</li>
+        <li class="box days light">F      </li>
       </ul>
       <div class="cont">
         <div class="task-title">Task 1 </div>
-        <li class="box days light">Sub Task 1 </li>
+        <div class="sub-task-title">Sub Task 1 </div>
         <div class="bar90 barAll"></div>
-        <div class="bar70 barAll"></div>
+        <div class="sub-task-title">Sub Task 2</div>
+        <div class="bar90 barAll"></div>
+        <div class="sub-task-title">Sub Task 3</div>
         <div class="bar50 barAll"></div>
-        <div class="bar90 barAll"></div>
+        <div class="sub-task-title">Sub Task 4</div>
         <div class="bar70 barAll"></div>
+        <div class="sub-task-title">Sub Task 5 with a really long sub task name.</div>
+        <div class="bar90 barAll"></div>
+        <div class="task-title">Task 2</div>
+        <div class="sub-task-title">Sub Task 1 </div>
         <div class="bar50 barAll"></div>
         <div class="bar90 barAll"></div>
         <div class="bar70 barAll"></div>
@@ -432,17 +481,52 @@ nav {
 </div>
 
 
+<script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
 <script>
-//   $(document).ready(function() {
+// $(document).ready(function() {
 //     $('html').addClass('load-complete');
 // });
-
- document.addEventListener("DOMContentLoaded", function() {
-  document.body.classList.add('load-complete')
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelector('html').classList.add('load-complete');
+  // code...
 });
 
+
+
+
+    Sheet = (function() {
+        var style = document.createElement('style');
+        document.head.appendChild(style);
+        var sheet = style.sheet
+        var rules = sheet.cssRules
+
+        function add(rule) {
+            sheet.insertRule(rule, rules.length);
+            show()
+        }
+
+        function replace(rule, i) {
+            if (i < rules.length) {
+                sheet.deleteRule(i);
+                sheet.insertRule(rule, i);
+            } else {
+                console.log("replace failed. index too high: " + i)
+            }
+            show()
+        }
+
+        function show() {
+            for (var i = 0; i < rules.length; i++) {
+                console.log(i, rules[i].cssText)
+            };
+            console.log("------")
+        }
+        return {
+            add: add,
+            show: show,
+            replace: replace
+        }
+    })();
 </script>
-
-
 </body>
 </html>
