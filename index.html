@@ -1,561 +1,233 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>1 May</title>
+    <title>Gantt-7-May</title>
     <style>
-        /*reset*/
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        /*border: 1px solid red;*/
+    #dataTable{
+      position:absolute;
+/*n;*/
+      height:0px;
+      left:-2000px;
     }
-
-    ul {
-        list-style-type: none;
+    body{
+      box-sizing: border-box;
+padding:1rem;
     }
-
-    html {
-        height: 100%;
-        width:100%;
+    .container{
+      padding:1rem;
+      margin:0;
+      border:1px solid black;
+      width:50%;
     }
-body {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 100;
-  user-select: none;
-  font-size: 2rem;
-}
-#tb .box,
-#tb2 .box {
-  width: 2rem;
-  height: 1.7rem;
-  font-size: 1rem;
-  margin-right: 1px;
-  margin-bottom: 1px;
-  margin-top: -1px;
-  margin-left: 0;
-  padding-left: 0;
-  padding-right: 0;
-  border-radius: 0;
-  text-align: center;
-}
-#tb2 .box.days {
-  height: 1rem;
-  font-size: .6rem;
-  padding-top: .2rem;
-  padding-bottom: .2rem;
-  background-color: rgba(0, 0, 0, 0.06);
-  margin-top: 27px;
-}
-
-#tb .box.light {
-  background-color: rgba(0, 0, 0, 0.2);
-}
-#tb2 .box.weekend.days {
-  /*background-color: #222;*/
-  background-color: rgba(0, 0, 0, 0.04);
-  height: 50.8rem;
-/*z-index: -11;*/
-}
-.window {
-  /*width: 350px;*/
-  height: 70px;
-  margin: 0px auto;
-  position: relative;
-  border-radius: 3px;
-  background: #FFF;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1), 0 0 25px rgba(0, 0, 0, 0.1);
-  opacity: 0;
-  transform: translateY(-50px);
-  transition-timing-function: cubic-bezier(0.25, 1.5, 0.7, 1);
-}
-.window .page.page-front .cover .tool-buttons {
-  opacity: 1;
-}
-.window .left-action {
-  position: absolute;
-  top: 0;
-  height: 70px;
-  width: 70px;
-  cursor: pointer;
-  opacity: .4;
-  transition-duration: .3s;
-  left: 0;
-/*border:1px solid blue;*/
-
-}
-.window .top-bar .left-action:hover {
-  opacity: 1;
-  transition-duration: .1s;
-
-}
-.window .top-bar .left-action .line {
-  position: absolute;
-  left: 23px;
-  width: 16px;
-  height: 2px;
-  background: #555;
-  transition-duration: .3s;
-}
-.window .top-bar .left-action .line-1 {
-  top: 27px;
-  transform: translateY(3px) rotate(-45deg);
-}
-.window .top-bar .left-action .line-3 {
-  top: 43px;
-  transform: translateY(-3px) rotate(45deg);
-}
-.window .top-bar .mid-text {
-  text-align: center;
-  line-height: 70px;
-  height: 70px;
-  font-size: 25px;
-}
-.window .top-bar .mid-text .title {
-  position: absolute;
-  top: 0;
-  left: 70px;
-  right: 70px;
-  bottom: 0;
-  text-align: center;
-  transition-duration: .3s;
-}
-.window .top-bar .mid-text .page-front-title {
-  color: #EA8400;
-}
-.window .top-bar .mid-text .page-saved-stations-title {
-  color: #EE0085;
-  opacity: 0;
-  /*transform: scale(0.4);*/
-  transform: translateX(-50px);
-
-}
-.window .page {
-  position: absolute;
-  top: 70px;
-  left: 0;
-  right: 0;
-}
-.window .page.page-front {
-  z-index: 1;
-}
-.window .page.page-front .cover {
-  background: #FFF linear-gradient(20deg, #EE0006, #EA8400, #EE0085) no-repeat;
-  background-size: 100% 100%;
-  position: relative;
-  opacity: 0;
-}
-.window .page.page-front .cover .tool-buttons {
-  position: absolute;
-  top: 1px;
-  z-index: 3;
-  width: 100%;
-  transition-duration: .3s;
-}
-.window .page.page-front .cover .tool-buttons li {
-  float: left;
-  padding: 7px 10px;
-  background: rgba(255, 255, 255, 0.15);
-  background: rgba(0, 0, 0, 0.4);
-  border-radius: 5px;
-  color: #FFF;
-  margin-left: 10px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition-duration: .3s;
-}
-.window .page.page-front .cover .tool-buttons li:hover {
-  transition-duration: .05s;
-  background: rgba(255, 255, 255, 0.25);
-}
-.window .page.page-saved-stations {
-  z-index: 1;
-  background: #382235;
-  overflow-y: scroll;
-  transition-duration: .3s;
-  opacity: 0;
-  pointer-events: none;
-}
-.window .page.page-saved-stations .station-list {
-  padding-top: 15px;
-}
-.window .page.page-saved-stations .station-list li {
-  display: block;
-  cursor: pointer;
-  transform: translateX(20%);
-  opacity: 0;
-}
-.window .page.page-saved-stations .station-list li .link {
-  color: #A38AA0;
-  transition-duration: .3s;
-  height: 60px;
-  line-height: 60px;
-  padding: 0 40px;
-  font-size: 20px;
-  display: block;
-}
-.window .page.page-saved-stations .station-list li .link:hover {
-  color: #FFF;
-  background-color: rgba(255, 255, 255, 0.05);
-  transition-duration: .5s;
-}
-.window .page.page-saved-stations .station-list li .link .num {
-  float: right;
-  color: #A38AA0;
-  font-size: 15px;
-  opacity: 0;
-  /*transform: translateX(-50%);*/
-  /*transition-duration: 0s;*/
-  /*transition-delay: 0s;*/
-}
-.window .page.page-saved-stations .station-list li.active .link,
-.window .page.page-saved-stations .station-list li.active .link:hover {
-  color: #FFF;
-}
-#page-toggle-chk:checked ~ .window .top-bar .left-action .line-1 {
-  transform: translateY(3px) rotate(45deg);
-}
-#page-toggle-chk:checked ~ .window .top-bar .left-action .line-2 {
-  width: 0;
-  opacity: 0;
-}
-#page-toggle-chk:checked ~ .window .top-bar .left-action .line-3 {
-  transform: translateY(-3px) rotate(-45deg);
-}
-#page-toggle-chk:checked ~ .window .top-bar .page-front-title {
-  opacity: 0;
-  /*transform: scale(0.4);*/
-  transform: translateX(-50px);
-}
-#page-toggle-chk:checked ~ .window .top-bar .page-saved-stations-title {
-  opacity: 1;
-  transform: none;
-}
-#page-toggle-chk:checked ~ .window .page-saved-stations {
-  opacity: 1;
-  pointer-events: auto;
-}
-#page-toggle-chk:checked ~ .window .page-saved-stations .station-list li {
-  opacity: 1;
-  transform: none;
-  transition-duration: .3s;
-}
-#page-toggle-chk:checked ~ .window .page-saved-stations .station-list li .num {
-  opacity: 1;
-  transform: none;
-  /*transition-duration: .3s;*/
-  /*transition-delay: .5s;*/
-}
-.load-complete .window {
-  opacity: 1;
-  transform: none;
-  /*height: 100vh;*/
-}
-.load-complete .window .top-bar {
-  opacity: 1;
-  transform: none;
-}
-.load-complete .window .page.page-front .cover {
-  position: relative;
-  overflow: auto;
-  height: 100vh;
-  opacity: 1;
-}
-.load-transition {
-  transition-duration: .5s;
-}
-.load-transition-delay-1 {
-  transition-delay: .1s;
-}
-.load-transition-delay-2 {
-  transition-delay: .6s;
-}
-
-
-
-
-/*vasko */
-.cont {
-  margin-top: 80px;
-}
-.barAll {
-  height: 5px;
-  margin-top: 0;
-  margin-bottom: 0.2rem;
-  background-color: rgba(255, 255, 255, 0.5);
-  z-index: -1000;
-}
-.bar1 {
-  width: 15%;
-  margin-left: 5%;
-}
-.bar2 {
-  width: 12%;
-  margin-left: 20%;
-}
-.bar3 {
-  width: 10%;
-  margin-left: 30%;
-}
-.bar4 {
-  width: 10%;
-  margin-left: 35%;
-}
-.bar5 {
-  width: 30%;
-  margin-left: 40%;
-}
-.bar6 {
-  width: 15%;
-  margin-left: 5%;
-}
-.bar7 {
-  width: 12%;
-  margin-left: 20%;
-}
-.bar8 {
-  width: 10%;
-  margin-left: 30%;
-}
-.bar9 {
-  width: 10%;
-  margin-left: 35%;
-}
-.bar10 {
-  width: 30%;
-  margin-left: 40%;
-}
-
-nav {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: #222;
-  width: 100%;
-  border: 1px solid red;
-}
-.c {
-  margin: 0;
-  padding: 0;
-}
-.bar-detail:after {
-  content: "";
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  width: 60%;
-  display: block;
-  margin: 0;
-  margin-left: 10%;
-  padding: 0;
-}
-.task-title, .sub-task-title {
+    table,td,th{
+      border:1px solid;
+      border-collapse: collapse;
+      padding:1rem;
+    }
+.bar{
+  height:1rem;
   color:white;
+  background-color: blue;
+  margin-top:1rem;
+  margin-left:0;
   padding-left:1rem;
-  /*background-color: rgba(0, 0, 0, 0.2);*/
-  margin-top: 8px;
+  border-radius:.5rem;
+  font-size:0.8rem;
 }
-.task-title {
-  height: 1.5rem;
-  font-size: 1.4rem;
-  padding-top: .2rem;
-  padding-bottom: .4rem;
-  /*background-color: rgba(0, 0, 0, 0.2);*/
-  margin-top: 8px;
-}
-.sub-task-title {
-    height:1.2rem;
-  font-size: 0.8rem;
-    padding-top: 0.6rem;
-  /*padding-bottom: 0.7rem;*/
-margin:.2rem;
-  /*margin-bottom: 100rem;*/
 
-  /*margin-bottom: 0.0rem;*/
-    /*opacity: 0;*/
-/*border:1px solid yellow;*/
-/*padding:0;*/
-}
- .sub-task-title:hover {
-    border:1px solid red;
-    height:3rem;
-    font-size: 2rem;
-  /*padding-bottom: 1rem;*/
-margin:0;
-  margin-bottom: 0.3rem;
-    opacity: 1;
-  /*transition-duration: .1s;*/
-  cursor: pointer;
-
-  /*transition-duration: .3s;*/
-/*padding:0;*/
-}
-    </style>
+      </style>
 </head>
+
 <body>
+    Start Date End Date Price in $ Quantity GST= Price * Qty* 11 Margin = in % Result price= Output = Price * Quantity + GST + Margin
+    <table id="dataTable" class="input">
+        <thead>
+            <th>Task</th>
+            <th>sub-task</th>
+            <th>start</th>
+            <th>end</th>
+            <th>$Price</th>
+            <th>Qty</th>
+            <th>GST</th>
+            <th>Margin%</th>
+            <th>$Total</th>
+            <th>start-pending</th>
+            <th>end-pending</th>
+        </thead>
+        <tr>
+            <td>Big Task</td>
+            <td>sub-task 1</td>
+            <td>2014, 11, 31</td>
+            <td>2014, 3, 31</td>
+            <td>100</td>
+            <td>5</td>
+            <td>10</td>
+            <td>5</td>
+            <td>200</td>
+            <td>2016, 1, 1</td>
+            <td>false</td>
+        </tr>
+        <tr>
+            <td>Big Task</td>
+            <td>sub-task 2</td>
+            <td>2014, 1, 1</td>
+            <td>2014, 6, 1</td>
+            <td>100</td>
+            <td>5</td>
+            <td>10</td>
+            <td>5</td>
+            <td>200</td>
+            <td>2016, 1, 3</td>
+            <td>false</td>
+
+        </tr>
+        <tr>
+            <td>Big Task</td>
+            <td>sub-task 3</td>
+            <td>2014, 6, 1</td>
+            <td>2014, 11, 1</td>
+            <td>100</td>
+            <td>5</td>
+            <td>10</td>
+            <td>5</td>
+            <td>200</td>
+            <td>false</td>
+            <td>false</td>
+
+        </tr>
+        <tr>
+            <td>Small Task</td>
+            <td>sub-task 1</td>
+            <td>2014, 1, 31</td>
+            <td>2015, 11, 31</td>
+            <td>100</td>
+            <td>5</td>
+            <td>10</td>
+            <td>5</td>
+            <td>200</td>
+            <td>2016, 1, 3</td>
+            <td>false</td>
+
+        </tr>
+        <tr>
+            <td>Small Task</td>
+            <td>sub-task 2</td>
+            <td>2014, 11, 31</td>
+            <td>2015, 11, 31</td>
+            <td>100</td>
+            <td>5</td>
+            <td>10</td>
+            <td>5</td>
+            <td>200</td>
+            <td>false</td>
+            <td>false</td>
+
+        </tr>
 
 
-<input id="page-toggle-chk" type="checkbox" style="display: none;"/>
-<div class="window load-transition">
-  <div class="top-bar load-transition">
-    <label for="page-toggle-chk" class="left-action">
-      <div class="line line-1"></div>
-      <div class="line line-3"></div>
-    </label>
-    <div class="mid-text">
-      <div class="title page-front-title">Gantt Chart</div>
-      <div class="title page-saved-stations-title">Gantt Details</div>
-    </div>
-  </div>
-  <div class="page page-front">
-    <div class="cover load-transition load-transition-delay-1">
-      <ul id="tb" class="tool-buttons">
-        <li class="box">9</li>
-        <li class="box">10</li>
-        <li class="box">11</li>
-        <li class="box">12</li>
-        <li class="box">13</li>
-        <li class="box">14</li>
-        <li class="box">15</li>
-        <li class="box">16</li>
-        <li class="box">17</li>
-        <li class="box light">1</li>
-        <li class="box light">2</li>
-        <li class="box light">3</li>
-        <li class="box light">4</li>
-        <li class="box light">5</li>
-        <li class="box light">6</li>
-        <li class="box light">7</li>
-        <li class="box light">8</li>
-        <li class="box light">9</li>
-        <li class="box light">10    </li>
-      </ul>
-      <ul id="tb2" class="tool-buttons">
-        <li class="box days">Mon</li>
-        <li class="box days">Tue</li>
-        <li class="box days">Wed</li>
-        <li class="box days">Thu</li>
-        <li class="box days">Fri</li>
-        <li class="box days weekend">Sat</li>
-        <li class="box days weekend">Sun</li>
-        <li class="box days">M</li>
-        <li class="box days">T</li>
-        <li class="box days">W</li>
-        <li class="box days">T</li>
-        <li class="box days">F</li>
-        <li class="box days weekend">S</li>
-        <li class="box days weekend">S          </li>
-        <li class="box days light">M</li>
-        <li class="box days light">T</li>
-        <li class="box days light">W</li>
-        <li class="box days light">T</li>
-        <li class="box days light">F      </li>
-      </ul>
-      <div class="cont">
-        <div class="task-title">Task 1 </div>
-        <div class="sub-task-title">Sub Task 1 </div>
-        <div class="bar1 barAll"></div>
-        <div class="sub-task-title">Sub Task 2</div>
-        <div class="bar2 barAll"></div>
-        <div class="sub-task-title">Sub Task 3</div>
-        <div class="bar3 barAll"></div>
-        <div class="sub-task-title">Sub Task 4</div>
-        <div class="bar4 barAll"></div>
-        <div class="sub-task-title">Sub Task 5 with a really long sub task name.</div>
-        <div class="bar5 barAll"></div>
-        <div class="task-title">Task 2</div>
-        <div class="sub-task-title">Sub Task 1 </div>
-        <div class="bar6 barAll"></div>
-        <div class="bar7 barAll"></div>
-        <div class="bar8 barAll"></div>
-        <div class="bar9 barAll"></div>
-        <div class="bar10 barAll"></div>
-        <div class="bar1 barAll"></div>
-        <div class="bar2 barAll"></div>
-        <div class="bar3 barAll"></div>
-        <div class="bar4 barAll"></div>
-        <div class="bar8 barAll"></div>
-        <div class="bar6 barAll"></div>
-        <div class="bar7 barAll"></div>
-        <div class="bar8 barAll"></div>
-        <div class="bar9 barAll"></div>
-        <div class="bar10 barAll"></div>
-        <div class="bar1 barAll"></div>
-        <div class="bar2 barAll"></div>
-        <div class="bar3 barAll"></div>
-        <div class="bar7 barAll"></div>
-        <div class="bar5 barAll"></div>
-        <div class="bar6 barAll"></div>
-        <div class="bar7 barAll"></div>
-        <div class="bar8 barAll"></div>
-        <div class="bar9 barAll"></div>
-        <div class="bar10 barAll"></div>
-      </div>
-    </div>
-  </div>
-  <div class="page page-saved-stations">
-    <menu class="station-list">
-      <ul>
-        <li><a class="link">Task 1<span class="num">$104.80</span></a></li>
-        <li class="active"><a class="link">Task 2<span class="num">$1107.20</span></a></li>
-        <li><a class="link bar-detail">Task 3<span class="num">$103.50</span></a></li>
-        <li> <a class="link">Task 4<span class="num">$109.2</span></a></li>
-        <li> <a class="link">Task 5<span class="num">$105.9</span></a></li>
-        <li> <a class="link">Task 6<span class="num">$96.3</span></a></li>
-        <li> <a class="link">Task 7<span class="num">96.3</span></a></li>
-        <li> <a class="link">Task 8<span class="num">96.3</span></a></li>
-      </ul>
-    </menu>
-  </div>
-</div>
-
-
-<script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
+    </table>
+<div class="container"></div>
 <script>
-// $(document).ready(function() {
-//     $('html').addClass('load-complete');
-// });
-document.addEventListener("DOMContentLoaded", function() {
-    document.querySelector('html').classList.add('load-complete');
-  // code...
-});
 
+var date2num = function(str){
+  str=str.split(",").map( (word)=> +(word.trim()) )
+  var dte = new Date(str)
+  // console.log(dte)
+  return dte
+}
 
+var max = function(arr) {
+        return Math.max.apply(Math, arr)
+    }
+var min = function(arr) {
+        return Math.min.apply(Math, arr)
+    }
+// date2num ("2014, 11, 31")
 
+function push2arr( tbl, i, j, txtProp, arr ){
+  var val = tbl.rows[i].cells[j][txtProp];
+  // only parse columns with dates
+  if(j!==2&&j!==3&&j!==9&&j!==10)
+    return false
+  if( !isNaN( date2num(val) ) ){
+    ganttData_tables.push( date2num(val) )
+  }
+}
 
-    Sheet = (function() {
-        var style = document.createElement('style');
-        document.head.appendChild(style);
-        var sheet = style.sheet
-        var rules = sheet.cssRules
+function buildTable(tbl, i, j, arr){
+  var txtProp = ( "innerText" in tbl ) ? "innerText" : "textContent";
+  if(j===0)
+    arr.push([])
+  var val = tbl.rows[i].cells[j][txtProp]
+  // console.log(val)
+  // console.log("val",val,+val)
+  if(!isNaN(+val))val= +val
+  arr[arr.length-1].push( val );
+}
 
-        function add(rule) {
-            sheet.insertRule(rule, rules.length);
-            show()
-        }
+var tbl = $$("#dataTable")[0]
+var ganttData_tables=[]
+var ganttData=[]
+var _start=2
+var _end=3
+var _start_pending=9
+var txtProp = ( "innerText" in tbl ) ? "innerText" : "textContent";
 
-        function replace(rule, i) {
-            if (i < rules.length) {
-                sheet.deleteRule(i);
-                sheet.insertRule(rule, i);
-            } else {
-                console.log("replace failed. index too high: " + i)
-            }
-            show()
-        }
+// grab all dates from date cols to find min, max, range:
 
-        function show() {
-            for (var i = 0; i < rules.length; i++) {
-                console.log(i, rules[i].cssText)
-            };
-            console.log("------")
-        }
-        return {
-            add: add,
-            show: show,
-            replace: replace
-        }
-    })();
+for (var i = 1; i < tbl.rows.length; i++)
+  for (var j = 0; j < tbl.rows[i].cells.length; j++)
+    push2arr( tbl, i, j, txtProp, ganttData_tables );
+  console.log("-----")
+
+// push all table values into 2d js array
+for (var i = 1; i < tbl.rows.length; i++)
+  for (var j = 0; j < tbl.rows[i].cells.length; j++){
+    buildTable(tbl, i, j, ganttData)
+  }
+
+  day_millisec = 24*60*60*1000;
+  minMilliSec=( min( ganttData_tables) - (2*day_millisec) );
+  maxMilliSec=( max( ganttData_tables) + 2*day_millisec );
+  rangeMillisec=(maxMilliSec-minMilliSec); // add 2 days padding either side
+  rangeDays=(maxMilliSec-minMilliSec)/1000/60/60/24; // add 2 days padding either side
+for (var i = 0; i < ganttData.length; i++) {
+  var tsk = ganttData[i];
+  var frac = ( new Date(tsk[3])- new Date(tsk[2]) )/rangeMillisec ;
+  var leftStart = ( new Date(tsk[2]) - new Date(minMilliSec) )/rangeMillisec ;
+  console.log( "frac", frac );
+  tsk.push( frac );
+  var style=""
+  document.getElementsByClassName("container")[0].appendChild(
+    create("div", tsk[2], "bar", frac*100, leftStart*100) )
+
+}
+
+  function create(tagNam, txt, klass, width, leftStart) {
+    var tg = document.createElement(tagNam)
+    if (txt)
+      tg.appendChild(document.createTextNode(txt))
+    if (klass)
+      tg.className = klass;
+    if (width)
+      tg.style= "width:"+width+"%;margin-left:"+leftStart+"%;";
+    return tg
+  }
+
+console.table(ganttData)
+
+console.log("range in days ",rangeDays);
+console.log("earliest date ", new Date(minMilliSec).toDateString() );
+console.log("latest date ",  new Date(maxMilliSec).toDateString() );
+
+function $$(str, dad){
+  return (dad||document).querySelectorAll(str)
+}
+
 </script>
 </body>
+
 </html>
