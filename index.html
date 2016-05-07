@@ -1,1 +1,448 @@
-hello
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>3 may gantt chart</title>
+  <style>
+ *{margin:0;padding:0;}
+  li {
+    list-style-type: none;
+}
+html {
+  height: 100%;
+}
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 100;
+  user-select: none;
+}
+#tb.tool-buttons .box,
+#tb2.tool-buttons .box {
+  width: 2rem;
+  height: .8rem;
+  font-size: 1rem;
+  margin-right: 1px;
+  margin-bottom: 1px;
+  margin-left: 0;
+  padding-left: 0;
+  padding-right: 0;
+  border-radius: 0;
+  text-align: center;
+}
+
+#tb2.tool-buttons .box.days {
+  height: .6rem;
+  font-size: .6rem;
+  padding-top: .2rem;
+  padding-bottom: .2rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  margin-top: 28px;
+}
+#tb2.tool-buttons .box.months {
+  height: .6rem;
+  font-size: .6rem;
+  padding-top: .2rem;
+  padding-bottom: .2rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  margin-top: 228px;
+  float:left;
+}
+#tb.tool-buttons .box.light {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+#tb2.tool-buttons .box.weekend.days {
+  background-color: #222;
+}
+.window {
+  width: 350px;
+  height: 70px;
+  margin: 0px auto;
+  position: relative;
+  border-radius: 3px;
+  background: #FFF;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1), 0 0 25px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(-50px);
+  transition-timing-function: cubic-bezier(0.25, 1.5, 0.7, 1);
+}
+.window .page.page-front .cover .tool-buttons {
+  opacity: 1;
+}
+.window .top-bar .left-action {
+  position: absolute;
+  top: 0;
+  height: 70px;
+  width: 70px;
+  cursor: pointer;
+  opacity: .4;
+  transition-duration: .3s;
+}
+.window .top-bar .left-action:hover {
+  opacity: 1;
+  transition-duration: .1s;
+}
+.window .top-bar .left-action {
+  left: 0;
+}
+.window .top-bar .left-action .line {
+  position: absolute;
+  left: 23px;
+  width: 16px;
+  height: 2px;
+  background: #555;
+  transition-duration: .3s;
+}
+.window .top-bar .left-action .line-1 {
+  top: 27px;
+  transform: translateY(3px) rotate(-45deg);
+}
+.window .top-bar .left-action .line-3 {
+  top: 43px;
+  transform: translateY(-3px) rotate(45deg);
+}
+.window .top-bar .mid-text {
+  text-align: center;
+  line-height: 70px;
+  height: 70px;
+  font-size: 25px;
+}
+.window .top-bar .mid-text .title {
+  position: absolute;
+  top: 0;
+  left: 70px;
+  right: 70px;
+  bottom: 0;
+  text-align: center;
+  transition-duration: .3s;
+}
+.window .top-bar .mid-text .page-front-title {
+  color: #EA8400;
+}
+.window .top-bar .mid-text .page-saved-stations-title {
+  color: #EE0085;
+  opacity: 0;
+  transform: scale(0.4);
+}
+.window .page {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  right: 0;
+}
+.window .page.page-front {
+  z-index: 1;
+}
+.window .page.page-front .cover {
+  background: #FFF linear-gradient(20deg, #EE0006, #EA8400, #EE0085) no-repeat;
+  background-size: 100% 200%;
+  position: relative;
+  opacity: 0;
+}
+.window .page.page-front .cover .tool-buttons {
+  position: absolute;
+  top: 1px;
+  z-index: 3;
+  width: 200%;
+  transition-duration: .3s;
+}
+.window .page.page-front .cover .tool-buttons li {
+  float: left;
+  padding: 7px 10px;
+  background: rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  color: #FFF;
+  margin-left: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition-duration: .3s;
+}
+.window .page.page-front .cover .tool-buttons li:hover {
+  transition-duration: .05s;
+  background: rgba(255, 255, 255, 0.25);
+}
+.window .page.page-saved-stations {
+  z-index: 1;
+  background: #382235;
+  overflow-y: scroll;
+  transition-duration: .3s;
+  opacity: 0;
+  pointer-events: none;
+}
+.window .page.page-saved-stations .station-list {
+  padding-top: 15px;
+}
+.window .page.page-saved-stations .station-list li {
+  display: block;
+  cursor: pointer;
+  transform: translateX(20%);
+  opacity: 0;
+}
+.window .page.page-saved-stations .station-list li .link {
+  color: #A38AA0;
+  transition-duration: .3s;
+  height: 60px;
+  line-height: 60px;
+  padding: 0 40px;
+  font-size: 20px;
+  display: block;
+}
+.window .page.page-saved-stations .station-list li .link:hover {
+  color: #FFF;
+  background-color: rgba(255, 255, 255, 0.05);
+  transition-duration: .5s;
+}
+.window .page.page-saved-stations .station-list li .link .num {
+  float: right;
+  color: #A38AA0;
+  font-size: 15px;
+  opacity: 0;
+  transform: translateX(-50%);
+  transition-duration: 0s;
+  transition-delay: 0s;
+}
+.window .page.page-saved-stations .station-list li.active .link,
+.window .page.page-saved-stations .station-list li.active .link:hover {
+  color: #FFF;
+}
+#page-toggle-chk:checked ~ .window .top-bar .left-action .line-1 {
+  transform: translateY(3px) rotate(45deg);
+}
+#page-toggle-chk:checked ~ .window .top-bar .left-action .line-2 {
+  width: 0;
+  opacity: 0;
+}
+#page-toggle-chk:checked ~ .window .top-bar .left-action .line-3 {
+  transform: translateY(-3px) rotate(-45deg);
+}
+#page-toggle-chk:checked ~ .window .top-bar .page-front-title {
+  opacity: 0;
+  transform: scale(0.4);
+}
+#page-toggle-chk:checked ~ .window .top-bar .page-saved-stations-title {
+  opacity: 1;
+  transform: none;
+}
+#page-toggle-chk:checked ~ .window .page-saved-stations {
+  opacity: 1;
+  pointer-events: auto;
+}
+#page-toggle-chk:checked ~ .window .page-saved-stations .station-list li {
+  opacity: 1;
+  transform: none;
+  transition-duration: .3s;
+}
+#page-toggle-chk:checked ~ .window .page-saved-stations .station-list li .num {
+  opacity: 1;
+  transform: none;
+  transition-duration: .3s;
+  transition-delay: .5s;
+}
+.load-complete .window {
+  opacity: 1;
+  transform: none;
+  height: 560px;
+}
+.load-complete .window .top-bar {
+  opacity: 1;
+  transform: none;
+}
+.load-complete .window .page.page-front .cover {
+  position: relative;
+  overflow: auto;
+  height: 500px;
+  opacity: 1;
+}
+.load-transition {
+  transition-duration: .5s;
+}
+.load-transition-delay-1 {
+  transition-delay: .3s;
+}
+.load-transition-delay-2 {
+  transition-delay: .6s;
+}
+.cont {
+  margin-top: 80px;
+}
+.barAll {
+  height: 7px;
+  margin-top: 10px;
+  margin-bottom: .25rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  z-index: -1000;
+}
+.bar90 {
+  width: 150%;
+  margin-left: 10%;
+}
+.bar50 {
+  width: 50%;
+  margin-left: 50%;
+}
+.bar70 {
+  width: 120%;
+  margin-left: 60%;
+}
+nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #222;
+  width: 100%;
+  border: 1px solid red;
+}
+.c {
+  margin: 0;
+  padding: 0;
+}
+.bar-detail:after {
+  content: "";
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  width: 60%;
+  display: block;
+  margin: 0;
+  margin-left: 10%;
+  padding: 0;
+}
+
+  </style>
+</head>
+<body>
+
+<input id="page-toggle-chk" type="checkbox" style="display: none;"/>
+<div class="window load-transition">
+  <div class="top-bar load-transition">
+    <label for="page-toggle-chk" class="left-action">
+      <div class="line line-1"></div>
+      <div class="line line-3"></div>
+    </label>
+    <div class="mid-text">
+      <div class="title page-front-title">Gantt Chart</div>
+      <div class="title page-saved-stations-title">Gantt Details</div>
+    </div>
+  </div>
+  <div class="page page-front">
+    <div class="cover load-transition load-transition-delay-1">
+      <ul id="tb" class="tool-buttons">
+        <li class="box">9</li>
+        <li class="box">10</li>
+        <li class="box">11</li>
+        <li class="box">12</li>
+        <li class="box">13</li>
+        <li class="box">14</li>
+        <li class="box">15</li>
+        <li class="box">16</li>
+        <li class="box">17</li>
+        <li class="box light">1</li>
+        <li class="box light">2</li>
+        <li class="box light">3</li>
+        <li class="box light">4</li>
+        <li class="box light">5</li>
+        <li class="box light">6</li>
+        <li class="box light">7</li>
+        <li class="box light">8</li>
+        <li class="box light">9</li>
+        <li class="box light">10    </li>
+      </ul>
+      <ul id="tb2" class="tool-buttons">
+        <li class="box days">Mon</li>
+        <li class="box days">Tue</li>
+        <li class="box days">Wed</li>
+        <li class="box days">Thu</li>
+        <li class="box days">Fri</li>
+        <li class="box days weekend">Sat</li>
+        <li class="box days weekend">Sun</li>
+        <li class="box days">M</li>
+        <li class="box days">T</li>
+        <li class="box days">W</li>
+        <li class="box days">T</li>
+        <li class="box days">F</li>
+        <li class="box days weekend">S</li>
+        <li class="box days weekend">S</li>
+        <li class="box days light">M</li>
+        <li class="box days light">T</li>
+        <li class="box days light">W</li>
+        <li class="box days light">T</li>
+        <li class="box days light">F</li>
+        <li class="box months ">MAY</li>
+        <li class="box months ">MAY</li>
+        <li class="box months ">MAY</li>
+        <li class="box months ">MAY</li>
+        <li class="box months ">MAY</li>
+      </ul>
+      <ul id="tb2" class="tool-buttons">
+        <li class="box months ">MAY</li>
+        <li class="box months ">MAY</li>
+        <li class="box months ">MAY</li>
+        <li class="box months ">MAY</li>
+        <li class="box months ">MAY</li>
+      </ul>
+      <div class="cont">
+        <div class="task-title">Task 1 </div>
+        <li class="box days light">Sub Task 1 </li>
+        <div class="bar90 barAll"></div>
+        <div class="bar70 barAll"></div>
+        <div class="bar50 barAll"></div>
+        <div class="bar90 barAll"></div>
+        <div class="bar70 barAll"></div>
+        <div class="bar50 barAll"></div>
+        <div class="bar90 barAll"></div>
+        <div class="bar70 barAll"></div>
+        <div class="bar50 barAll"></div>
+        <div class="bar90 barAll"></div>
+        <div class="bar70 barAll"></div>
+        <div class="bar50 barAll"></div>
+        <div class="bar90 barAll"></div>
+        <div class="bar70 barAll"></div>
+        <div class="bar50 barAll"></div>
+        <div class="bar90 barAll"></div>
+        <div class="bar70 barAll"></div>
+        <div class="bar50 barAll"></div>
+        <div class="bar90 barAll"></div>
+        <div class="bar70 barAll"></div>
+        <div class="bar50 barAll"></div>
+        <div class="bar90 barAll"></div>
+        <div class="bar70 barAll"></div>
+        <div class="bar50 barAll"></div>
+        <div class="bar90 barAll"></div>
+        <div class="bar70 barAll"></div>
+        <div class="bar50 barAll"></div>
+        <div class="bar90 barAll"></div>
+        <div class="bar70 barAll"></div>
+        <div class="bar50 barAll"></div>
+      </div>
+    </div>
+  </div>
+  <div class="page page-saved-stations">
+    <menu class="station-list">
+      <ul>
+        <li><a class="link">Task 1<span class="num">$104.80</span></a></li>
+        <li class="active"><a class="link">Task 2<span class="num">$1107.20</span></a></li>
+        <li><a class="link bar-detail">Task 3<span class="num">$103.50</span></a></li>
+        <li> <a class="link">Task 4<span class="num">$109.2</span></a></li>
+        <li> <a class="link">Task 5<span class="num">$105.9</span></a></li>
+        <li> <a class="link">Task 6<span class="num">$96.3</span></a></li>
+        <li> <a class="link">Task 7<span class="num">96.3</span></a></li>
+        <li> <a class="link">Task 8<span class="num">96.3</span></a></li>
+      </ul>
+    </menu>
+  </div>
+</div>
+
+
+<script>
+//   $(document).ready(function() {
+//     $('html').addClass('load-complete');
+// });
+
+ document.addEventListener("DOMContentLoaded", function() {
+  document.body.classList.add('load-complete')
+});
+
+</script>
+
+
+</body>
+</html>
