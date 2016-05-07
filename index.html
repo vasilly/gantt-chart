@@ -132,7 +132,8 @@ padding:1rem;
 <script>
 
 var date2num = function(str){
-  str=str.split(",").map( (word)=> +(word.trim()) )
+  // str=str.split(",").map( (word)=> +(word.trim()) )
+  str = str.split(",").map( function(word){return word.trim()})
   var dte = new Date(str)
   // console.log(dte)
   return dte
