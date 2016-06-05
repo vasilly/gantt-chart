@@ -16,8 +16,14 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
     <!-- silviomorto bootstrap select -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.1.0/css/bootstrap-slider.min.css"> -->
+    <!-- forget the bs slider, try jquery ui -->
+    <!-- <script   src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"   integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw="   crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> -->
+    <!-- <script src="//code.jquery.com/jquery-1.10.2.js"></script> -->
     <!-- Custom styles for this template -->
     <link href="offcanvas.css" rel="stylesheet">
     <style>
@@ -27,6 +33,7 @@
 
     body {
         background-color: #eeeeee;
+        background-color: #f5f5f5;
         color: #333;
     }
 
@@ -74,7 +81,6 @@
         border-width: 0;
         color: white;
         background: #4daf70;
-        /* For browsers that do not support gradients */
         background: linear-gradient(to bottom, #5fda80 0%, #4daf70 100%);
         /* Fx 10+, Op 11.6+, Ch 26+, IE 10 */
     }
@@ -82,7 +88,7 @@
 
     .left-inner-addon {
         position: relative;
-        border: 1px solid grey;
+        /*border: 1px solid grey;*/
     }
 
     .left-inner-addon i {
@@ -105,6 +111,63 @@
 
     .size-14 {
         font-size: 14px;
+    }
+
+    .btn-2-input {
+        background-color: #fff;
+        background-image: none;
+    }
+
+    .bootstrap-select,
+    .bootstrap-select .btn,
+    .bootstrap-select .btn .filter-option,
+    .bootstrap-select .btn-default.active,
+    .bootstrap-select .btn-default:active,
+    .bootstrap-select.open>.dropdown-toggle.btn-default:hover,
+    .bootstrap-select.open>.dropdown-toggle.btn-default {
+        background-color: #fff;
+        background-image: none;
+        border-color: #8c8c8c;
+    }
+    /*--------------------------------------------------------------------------------*/
+    /*jQuery-ui range slider over-rides*/
+    /*--------------------------------------------------------------------------------*/
+
+    .ui-slider .ui-slider-handle {
+        left: -.6em;
+        border-radius: 50%;
+        text-decoration: none;
+        text-align: center;
+        font-size: 1.7rem;
+        top: -0.6rem;
+        background: linear-gradient(to bottom, #5fda80 0%, #4daf70 100%);
+    }
+
+    .ui-slider-range {
+        height: 2px;
+    }
+
+    .ui-widget-header {
+        background: #d9d9d9;
+    }
+
+    .ui-widget {
+        /*font-family: Trebuchet MS,Tahoma,Verdana,Arial,sans-serif;*/
+        font-size: .6em;
+    }
+
+    .ui-widget-content {
+        border: none;
+        background: #e9e9e9;
+    }
+
+    .ui-corner-all {
+        border-radius: 3px;
+    }
+
+    .ui-widget-content .ui-state-focus {
+        border: 1px solid green;
+        /*color: red;*/
     }
     </style>
 </head>
@@ -158,55 +221,38 @@
                     </label>
                 </div>
             </div>
-            <!-- ----- -->
-            <!-- --- -->
-            <div class="border form-group   col-sm-6 col-md-4 col-lg-3 ">
-                <label for="inputEmail" class="control-label">Calories</label>
+                        <!-- field -->
+            <div class="border form-group col-sm-6 col-md-4 col-lg-3">
+                <label class="control-label" for="inputEmail">Calories</label>
                 <div class="no-gutter">
-                    <div class="  col-xs-6 col-lg-4 ">
+                    <div class="col-xs-6 col-lg-4">
                         <label for="code">Min</label>
-                        <input type="text" class="form-control" />
+                        <input id="minValue" value="20" class="form-control" type="text">
                     </div>
-                    <div class="  col-xs-6 col-lg-4  ">
+                    <div class="col-xs-6 col-lg-4">
                         <label for="code">Max</label>
-                        <input type="text" class="form-control input-normal" />
+                        <input id="maxValue" value="180" class="form-control input-normal" type="text">
+                    </div>
+                    <div class="col-xs-12 col-lg-8" style="padding-top:2rem;padding-bottom:2rem;">
+                        <div id="slider-range" style=""></div>
                     </div>
                 </div>
             </div>
             <!-- --- -->
-            <!-- ----- -->
+            <!-- tidiey -->
+            <!-- latest select -->
             <div class="border form-group   col-sm-6 col-md-4 col-lg-3 ">
-                <label for="sel1" class="control-label">Select list:</label>
-                <div class="">
-                    <i class="step fi-marker size-14"></i>
-                    <select class="form-control" id="sel1">
-                        <option>Richmond, Victoria</option>
-                        <option>2</option>
+                <label for="inputEmail" class="control-label">Location</label>
+                <div class="no-gutter">
+                    <select class="selectpicker">
+                        <option data-icon="fi-marker check-mark"> Richmond, Victoria</option>
+                        <option data-icon="fi-marker check-mark"> Ketchup2</option>
                     </select>
                 </div>
             </div>
-            <!-- field -->
-            <div class="form-group left-inner-addon">
-                <!-- <i class="glyphicon glyphicon-user"></i> -->
-                <i class="step fi-marker size-14"></i>
-                <select class="form-control" id="inst-licence-num" autofocus="autofocus" placeholder="placeholder" type="text" value="" name="user[login]">
-                    <option>Richmond, Victoria</option>
-                    <option>2</option>
-                </select>
-            </div>
-            <!-- new buttons -->
-            <div class="input-group">
-                <span class="input-group-addon"><i class="step fi-marker size-14"></i></span>
-                    <select class="form-control" id="sel1">
-                        <option>Richmond, Victoria</option>
-                        <option>2</option>
-                    </select>
-                <span class="input-group-addon">.00</span>
-            </div>
-            <!-- <button type="submit" class="btn btn-lg btn-primary btn-block ">APPLY FILTER</button> -->
-            <div class="border form-group   col-xs-12">
-                <button type="submit" class="btn btn-lg btn-block btn-apply">APPLY FILTER</button>
-            </div>
+
+            <!-- button -->
+            <button type="submit" class="btn btn-lg btn-block btn-apply ">APPLY FILTER</button>
             <!-- ----- -->
             <!--                 <div class="border  col-sm-6 col-md-4 col-lg-3 ">
                     <h3>Post Title 6</h3>
@@ -217,19 +263,10 @@
     </div>
     <!-- end container blog -->
     <!-- bootstrap dropdown over-ride -->
-
-
-
-
-
-
-<select class="selectpicker">
-  <option data-icon="fi-marker">Richmond, Victoria</option>
-</select>
-
     <!-- end bs over ride -->
-    <h2>Original image from UX design document</h2>
-    <p>a responsive component that will work across different viewport sizes.</p>
+    <h2>Original image from UX design document (below)</h2>
+    <p>Objective: Create a responsive component that will work across different viewport sizes.</p>
+    <p>IE10+, modern browsers & mobile</p>
     <img src="Filter-cuisine-calories.png" alt="">
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -240,10 +277,11 @@
     </script>
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
     <!-- Latest compiled and minified JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <!-- bs select -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.1.0/bootstrap-slider.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
     <script src="offcanvas.js"></script>
@@ -258,6 +296,49 @@
         <li><a href="">item 5</a></li>
       </ul>
     </div> -->
+    <script>
+    $(document).ready(function() {
+        $('.boostrap-select .bs-caret').html('<span class="glyphicon glyphicon-chevron-down"></span>')
+        $("#ex2").slider({});
+
+
+        $("#slider-range").slider({
+            range: true,
+            min: 0,
+            max: 500,
+            values: [75, 300],
+            slide: function(event, ui) {
+                $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+            }
+        });
+        $("#amount").val("$" + $("#slider-range").slider("values", 0) +
+            " - $" + $("#slider-range").slider("values", 1));
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        $('#here + .boostrap-select .bs-caret').html('<span class="glyphicon glyphicon-chevron-down"></span>')
+
+    });
+    </script>
+    <script>
+    $(function() {
+        $("#slider-range").slider({
+            range: true,
+            min: 0,
+            max: 200,
+            values: [20, 180],
+            slide: function(event, ui) {
+                // $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+                $("#minValue").val(ui.values[0]);
+                $("#maxValue").val(ui.values[1]);
+            }
+        });
+        $("#amount").val(
+            "$" + $("#slider-range").slider("values", 0) +
+            " - $" + $("#slider-range").slider("values", 1)
+        );
+    });
+    </script>
 </body>
 
 </html>
