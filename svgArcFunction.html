@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>svg arc</title>
+</head>
+<body>
+
+<svg   width="180" height="180" xmlns="http://www.w3.org/2000/svg">
+<path id="c2" d="M170 90 A 80 80, 0, 0, 0, 90 10"
+          stroke="#61dd82"
+          stroke-width="9"
+          stroke-linecap="round"
+          fill="#fff"
+      />
+</svg>
+  <script>
+
+function polarToCartesian(centerX, centerY, radius, circleFraction) {
+  var TAU = Math.PI*2;
+  return {
+    x: centerX + (radius * Math.cos(circleFraction*TAU)),
+    y: centerY + (radius * Math.sin(circleFraction*TAU))
+  };
+}
+
+function describeArc(x, y, radius, startAngle, endAngle){
+    endAngle-=0.25;
+    startAngle-=0.25;
+    var start = polarToCartesian(x, y, radius, endAngle);
+    var end = polarToCartesian(x, y, radius, startAngle);
+    var arcSweep = endAngle - startAngle <= 0.5 ? "0" : "1";
+
+    var d = [
+        "M", start.x, start.y,
+        "A", radius, radius, 0, arcSweep, 0, end.x, end.y
+    ].join(" ");
+// console.log(d);
+    return d;
+}
+
+window.onload = function() {
+  document.getElementById("c2")
+    .setAttribute("d", describeArc(150, 150, 100, 0, 0.75));
+};
+  </script>
+</body>
+</html>
