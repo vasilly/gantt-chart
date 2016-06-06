@@ -74,10 +74,10 @@
         font-size: 1.3rem;
         margin-bottom: 1.2rem;
     }
-    .minmax{
+
+    .minmax {
         font-weight: 400;
         font-size: 1.2rem;
-
     }
 
     .border {
@@ -89,12 +89,13 @@
         padding-left: 0;
     }
 
-    .btn-apply {
+    .button-apply {
         border-radius: 3rem;
         border-width: 0;
         color: white;
         background: #4daf70;
         background: linear-gradient(to bottom, #5fda80 0%, #4daf70 100%);
+        margin-top: 2rem;
         /* Fx 10+, Op 11.6+, Ch 26+, IE 10 */
     }
     /*bootstrap input iwith icon*/
@@ -190,8 +191,9 @@
         position: relative;
         width: 81px;
         height: 81px;
-        margin-right:3.4rem;
-        margin-top:2rem;
+        margin-right: 3.4rem;
+        margin-top: 2rem;
+
         /*margin-left:15rem;*/
         /*// margin-top:10rem;*/
     }
@@ -246,16 +248,19 @@
     svg {
         /*border: 1px solid red;*/
     }
+    /*test button*/
 
-/*test button*/
-.largeGreenButton {
-  width: 273px;
-  height: 50px;
-  border-radius: 130px;
-  background-image: linear-gradient(to top, #48ab70, #5bd982);
-  box-shadow: 0 2px 1px 0 #2b8e50;
-  border-top-color: transparent;
-}
+    .largeGreenButton {
+        width: 273px;
+        height: 50px;
+        border-radius: 130px;
+        background-image: linear-gradient(to top, #48ab70, #5bd982);
+        box-shadow: 0 2px 1px 0 #2b8e50;
+        border-top-color: transparent;
+                font-size: 16px;
+  text-align: center;
+  color: #ffffff;
+    }
     </style>
 </head>
 
@@ -275,7 +280,7 @@
         <div class="row">
             <!-- Cuisine -->
             <!-- ----- -->
-            <div class="border form-group col-sm-6 col-md-4 col-lg-3 ">
+            <div class="border form-group col-sm-6 col-md-6 col-lg-6 ">
                 <label for="inputEmail" class="control-label">Cuisine Type</label>
                 <div class="" data-toggle="buttons">
                     <label class="btn button-myob active">
@@ -291,7 +296,7 @@
             </div>
             <!-- Sort By -->
             <!-- ----- -->
-            <div class="border form-group col-sm-6 col-md-4 col-lg-3 ">
+            <div class="border form-group col-sm-6 col-sm-6 col-md-6 col-lg-6 ">
                 <label for="inputEmail" class="control-label">Sort by</label>
                 <div class="" data-toggle="buttons">
                     <label class="btn button-myob active">
@@ -304,7 +309,7 @@
             </div>
             <!-- Calories -->
             <!-- ----- -->
-            <div class="border form-group col-sm-6 col-md-12 col-lg-6">
+            <div class="border form-group col-sm-12 col-md-12 col-lg-12">
                 <label class="control-label" for="inputEmail">Calories</label>
                 <div class="no-gutter">
                     <div class="col-xs-6 col-lg-6">
@@ -323,7 +328,7 @@
             <!-- --- -->
             <!-- tidiey -->
             <!-- latest select -->
-            <div class="border form-group   col-sm-12 col-sm-6 col-md-4 col-lg-6 ">
+            <div class="border form-group   col-sm-6 col-sm-6 col-md-6 col-lg-6 ">
                 <label for="inputEmail" class="control-label">Location</label>
                 <div class="no-gutter">
                     <select class="selectpicker">
@@ -334,14 +339,14 @@
             </div>
             <!-- Delivery time -->
             <!-- ----- -->
-            <div class="border form-group col-xs-12 col-sm-6 col-md-4 col-lg-6 ">
+            <div class="border form-group col-xs-12 col-sm-6 col-md-6 col-lg-6 ">
                 <div class="row no-gutter">
                     <label for="inputEmail" class="control-label">Delivery time</label>
                 </div>
                 <!-- svg -->
-                <svg class="defs-only" xmlns="http://www.w3.org/2000/svg"  width="0" height="0">
+                <svg class="defs-only" xmlns="http://www.w3.org/2000/svg" width="0" height="0">
                     <symbol id="quarterarc">
-                        <path d="M190 100 A 90 90, 0, 0, 0, 100 10"  stroke="#61dd82" stroke-width="20" stroke-linecap="round" fill="#fff" />
+                        <path d="M190 100 A 90 90, 0, 0, 0, 100 10" stroke="#61dd82" stroke-width="20" stroke-linecap="round" fill="#fff" />
                     </symbol>
                     <symbol id="circlebackground">
                         <circle r="90" cx="100" cy="100" fill="white" stroke="#dfdfdf" stroke-width="20"></circle>
@@ -378,7 +383,7 @@
                 }
 
                 .cen2 {
-                  color: #43af64;
+                    color: #43af64;
                     position: relative;
                     top: -65%;
                     transform: translateY(-150%);
@@ -405,7 +410,7 @@
             </div>
             <!-- button -->
             <div class="border form-group col-xs-12 col-sm-8 col-sm-offset-2  col-md-6 col-md-offset-3  ">
-                <button type="submit" class="btn btn-lg btn-block btn-apply ">APPLY FILTER</button>
+                <button type="submit" class="btn btn-lg btn-block button-apply ">APPLY FILTER</button>
             </div>
             <!-- ----- -->
             <!--                 <div class="border  col-sm-6 col-md-4 col-lg-3 ">
@@ -415,9 +420,35 @@
         </div>
         <!-- end row -->
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
-                <button type="submit" class="btn btn-lg btn-block largeGreenButton ">APPLY actual size</button>
+    <button type="submit" class="btn btn-lg btn-block largeGreenButton ">APPLY actual size</button>
+    <style>
+    .z-butn {
+        width: 64px;
+        height: 36px;
+        border-radius: 4px;
+        border: solid 1px #d0d0d0;
 
+    }
+    </style>
+    <div class="" data-toggle="buttons">
+        <label class="btn button-myob z-butn" id="btn-601">
+            <input type="radio" name="options">60 min
+        </label>
+    </div>
     <!-- end container blog -->
     <!-- bootstrap dropdown over-ride -->
     <!-- end bs over ride -->
@@ -425,8 +456,32 @@
     <p>Objective: Create a responsive component that will work across different viewport sizes.</p>
     <p>IE10+, modern browsers & mobile</p>
     <img src="Filter-cuisine-calories.png" alt="">
-    <br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -475,25 +530,57 @@
         $('#btn-15').click(function() {
             $('#delivery-arc').removeClass("c30 c45 c60");
             $('#delivery-time-display').text("15");
+            animateNumbers('#delivery-time-display', 500)
+
         });
         $('#btn-30').click(function() {
             $('#delivery-arc').removeClass("c30 c45 c60").addClass("c30");
             $('#delivery-time-display').text("30");
+            animateNumbers('#delivery-time-display', 500)
+
 
         });
         $('#btn-45').click(function() {
             $('#delivery-arc').removeClass("c30 c45 c60").addClass("c30 c45");
             $('#delivery-time-display').text("45");
+            animateNumbers('#delivery-time-display', 500)
+
 
         });
 
         $('#btn-60').click(function() {
             $('#delivery-arc').removeClass("c30 c45 c60").addClass("c30 c45 c60");
             $('#delivery-time-display').text("60");
+            animateNumbers('#delivery-time-display', 500)
+
+
 
         });
 
-
+        function animateNumbers(id, ms) {
+            var $num = $(id)
+            $num.prop('Counter', 0).animate({
+                Counter: $num.text()
+            }, {
+                duration: ms,
+                easing: 'swing',
+                step: function(now) {
+                    $num.text(Math.ceil(now));
+                }
+            });
+        }
+        // animate numbers
+        $('delivery-time-display').each(function() {
+            $(this).prop('Counter', 0).animate({
+                Counter: $(this).text()
+            }, {
+                duration: 4000,
+                easing: 'swing',
+                step: function(now) {
+                    $(this).text(Math.ceil(now));
+                }
+            });
+        });
         // dom ready
     });
     </script>
