@@ -363,7 +363,7 @@
                     <svg id="" viewBox="0 0 200 200">
                         <use xlink:href="#circlebackground" />
                     </svg>
-                    <div class="cen" style="font-size:2.5rem;">15</div>
+                    <div id="delivery-time-display" class="cen" style="font-size:2.5rem;">15</div>
                     <div class="cen2" style="font-size:1.23rem;">mins</div>
                 </div>
                 <style>
@@ -468,22 +468,29 @@
                 $("#maxValue").val(ui.values[1]);
             }
         });
-        $("#amount").val(
-            "$" + $("#slider-range").slider("values", 0) +
-            " - $" + $("#slider-range").slider("values", 1)
-        );
+        // $("#amount").val(
+        //     "$" + $("#slider-range").slider("values", 0) +
+        //     " - $" + $("#slider-range").slider("values", 1)
+        // );
         $('#btn-15').click(function() {
             $('#delivery-arc').removeClass("c30 c45 c60");
+            $('#delivery-time-display').text("15");
         });
         $('#btn-30').click(function() {
             $('#delivery-arc').removeClass("c30 c45 c60").addClass("c30");
+            $('#delivery-time-display').text("30");
+
         });
         $('#btn-45').click(function() {
             $('#delivery-arc').removeClass("c30 c45 c60").addClass("c30 c45");
+            $('#delivery-time-display').text("45");
+
         });
 
         $('#btn-60').click(function() {
             $('#delivery-arc').removeClass("c30 c45 c60").addClass("c30 c45 c60");
+            $('#delivery-time-display').text("60");
+
         });
 
 
