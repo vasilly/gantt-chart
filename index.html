@@ -22,7 +22,6 @@
     <!-- forget the bs slider, try jquery ui -->
     <!-- <script   src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"   integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw="   crossorigin="anonymous"></script> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.css">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/8.5.1/nouislider.min.css">
     <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> -->
     <!-- <script src="//code.jquery.com/jquery-1.10.2.js"></script> -->
@@ -50,8 +49,8 @@
         margin-right: 0.8rem;
         margin-bottom: 1rem;
         border-radius: 4px;
-        font-size:1.4rem;
-height:3.6rem;
+        font-size: 1.4rem;
+        height: 3.6rem;
     }
 
     .button-myob.active {
@@ -93,7 +92,6 @@ height:3.6rem;
         padding-left: 0;
     }
 
-
     .button-apply {
         height: 50px;
         height: 5rem;
@@ -109,13 +107,14 @@ height:3.6rem;
         color: #ffffff;
         margin-top: 0rem;
     }
-    .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
-    width: 100%;
-}
-.bootstrap-select{
-        border-color: transparent;
 
-}
+    .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+        width: 100%;
+    }
+
+    .bootstrap-select {
+        border-color: transparent;
+    }
     /*bootstrap input iwith icon*/
 
     .left-inner-addon {
@@ -159,13 +158,14 @@ height:3.6rem;
     .bootstrap-select.open>.dropdown-toggle.btn-default {
         background-color: #fff;
         background-image: none;
-          color: #333333;
-
+        color: #333333;
         /*border-color: #8c8c8c;*/
     }
-    .bootstrap-select .btn span, .bootstrap-select .btn .filter-option i{
-          color: #b1b1b1;;
 
+    .bootstrap-select .btn span,
+    .bootstrap-select .btn .filter-option i {
+        color: #b1b1b1;
+        ;
     }
     /*--------------------------------------------------------------------------------*/
     /*jQuery-ui range slider over-rides*/
@@ -217,8 +217,6 @@ height:3.6rem;
         height: 81px;
         margin-right: 3.4rem;
         margin-top: 2rem;
-        /*margin-left:15rem;*/
-        /*// margin-top:10rem;*/
     }
 
     #c1,
@@ -326,21 +324,17 @@ height:3.6rem;
                     <div class="col-xs-6 col-lg-6">
                         <label class="minmax" for="code">Min</label>
                         <!-- <input id="minValue" value="20" class="form-control" type="text"> -->
-                                <input id="value-input-min" class="form-control">
-
+                        <input id="value-input-min" class="form-control">
                     </div>
                     <div class="col-xs-6 col-lg-6">
                         <label class="minmax" for="code">Max</label>
                         <!-- <input id="maxValue" value="180" class="form-control input-normal" type="text"> -->
-    <input id="value-input" class="form-control">
-
+                        <input id="value-input" class="form-control">
                     </div>
                     <div class="col-xs-12 col-lg-12" style="padding-top:2rem;padding-bottom:2rem;">
                         <!-- <div id="slider-range" style=""></div> -->
-    <div id="range"></div>
-
+                        <div id="range"></div>
                     </div>
-
                 </div>
             </div>
             <!-- --- -->
@@ -386,28 +380,9 @@ height:3.6rem;
                     <svg id="" viewBox="0 0 200 200">
                         <use xlink:href="#circlebackground" />
                     </svg>
-                    <div id="delivery-time-display" class="cen" style="font-size:2.3rem;">15</div>
-                    <div class="cen2" style="font-size:1.20rem;">mins</div>
+                    <div id="delivery-time-display" class="cen" >15</div>
+                    <div class="cen2" >mins</div>
                 </div>
-                <style>
-                .cen {
-                    position: relative;
-                    top: -50%;
-                    /*left: 50%;*/
-                    transform: translateY(-85%);
-                    /*transform: translateX(-50%);*/
-                    text-align: center;
-                    color: #43af64;
-                }
-
-                .cen2 {
-                    color: #43af64;
-                    position: relative;
-                    top: -100%;
-                    transform: translateY(40%);
-                    text-align: center;
-                }
-                </style>
                 <!-- end delivery-arcs -->
                 <!-- svg end -->
                 <div class="" data-toggle="buttons">
@@ -423,7 +398,6 @@ height:3.6rem;
                     <label class="btn button-myob" id="btn-60">
                         <input type="radio" name="options">60 min
                     </label>
-
                 </div>
                 <!-- end radio-buttons -->
             </div>
@@ -443,8 +417,6 @@ height:3.6rem;
     <br>
     <br>
     <br>
-
-
     <!-- end container blog -->
     <!-- bootstrap dropdown over-ride -->
     <!-- end bs over ride -->
@@ -478,10 +450,7 @@ height:3.6rem;
     <br>
     <br>
     <br>
-
-
     <script>
-
     </script>
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -591,94 +560,149 @@ height:3.6rem;
 
         var range = document.getElementById('range');
 
-noUiSlider.create(range, {
-  start: [ 20, 180 ], // Handle start position
-  step: 1, // Slider moves in increments of '10'
-  margin: 20, // Handles must be more than '20' apart
-  connect: true, // Display a colored bar between the handles
-  // direction: 'ltr', // Put '0' at the bottom of the slider
-  // orientation: 'vertical', // Orient the slider vertically
-  behaviour: 'tap-drag', // Move handle on tap, bar is draggable
-  range: { // Slider can select '0' to '100'
-    'min': 0,
-    'max': 200
-  }
-});
-// Connect the input to the slider
-var valueInput = document.getElementById('value-input'),
-  // valueSpan = document.getElementById('value-span'),
-  valueMin = document.getElementById('value-input-min');
+        noUiSlider.create(range, {
+            start: [20, 180], // Handle start position
+            step: 1, // Slider moves in increments of '10'
+            margin: 20, // Handles must be more than '20' apart
+            connect: true, // Display a colored bar between the handles
+            // direction: 'ltr', // Put '0' at the bottom of the slider
+            // orientation: 'vertical', // Orient the slider vertically
+            behaviour: 'tap-drag', // Move handle on tap, bar is draggable
+            range: { // Slider can select '0' to '100'
+                'min': 0,
+                'max': 200
+            }
+        });
+        // Connect the input to the slider
+        var valueInput = document.getElementById('value-input'),
+            // valueSpan = document.getElementById('value-span'),
+            valueMin = document.getElementById('value-input-min');
 
-// When the slider value changes, update the input and span
-range.noUiSlider.on('update', function( values, handle ) {
-  if ( handle ) {
-    valueInput.value = values[handle];
-  } else {
-    valueMin.value = values[handle];
-  }
-});
+        // When the slider value changes, update the input and span
+        range.noUiSlider.on('update', function(values, handle) {
+            if (handle) {
+                valueInput.value = values[handle];
+            } else {
+                valueMin.value = values[handle];
+            }
+        });
 
-// When the input changes, set the slider value
-valueInput.addEventListener('change', function(){
-  range.noUiSlider.set([null, this.value]);
-});
-valueMin.addEventListener('change', function(){
-  range.noUiSlider.set([this.value, null]);
-});
+        // When the input changes, set the slider value
+        valueInput.addEventListener('change', function() {
+            range.noUiSlider.set([null, this.value]);
+        });
+        valueMin.addEventListener('change', function() {
+            range.noUiSlider.set([this.value, null]);
+        });
         // dom ready
     });
     </script>
     <style>
-      #showcase {
-  margin: 0 20px;
-  text-align: center;
-  border:1px solid red;
-
-}
-#range {
-  height: 6px;
-  margin: 0 auto 30px;
-  /*background-color: #d9d9d9;*/
-}
-
-.noUi-handle{
-  border:none;
-}
-
-.noUi-horizontal .noUi-handle {
-    width: 2rem;
-    height: 2rem;
-    border-radius:17px;
-    /*border: none;*/
-    /*background: #FFF;*/
-    cursor: default;
-    /*box-shadow: inset 0 0 1px #FFF,inset 0 1px 7px #EBEBEB,0 3px 6px -3px #BBB;*/
-    top:-0.7rem;
-     background: linear-gradient(to bottom, #5fda80 0%, #4daf70 100%);
-     /*border: 1px solid #cccccc;*/
-
-}
-.noUi-horizontal .noUi-handle:after,.noUi-horizontal .noUi-handle:before {
-   content: none;
-}
-.noUi-connect {
-    background: #3FB8AF;
-    box-shadow: inset 0 0 3px rgba(51,51,51,.45);
-    background-color: #d9d9d9;
-
-    box-shadow: none;
-      background-color: #d9d9d9;
-
+    #showcase {
+        margin: 0 20px;
+        text-align: center;
+        border: 1px solid red;
     }
+
+    #range {
+        height: 6px;
+        margin: 0 auto 30px;
+        /*background-color: #d9d9d9;*/
+    }
+
+    .noUi-handle {
+        border: none;
+    }
+
+    .noUi-horizontal .noUi-handle {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 17px;
+        /*border: none;*/
+        /*background: #FFF;*/
+        cursor: default;
+        /*box-shadow: inset 0 0 1px #FFF,inset 0 1px 7px #EBEBEB,0 3px 6px -3px #BBB;*/
+        top: -0.7rem;
+        background: linear-gradient(to bottom, #5fda80 0%, #4daf70 100%);
+        /*border: 1px solid #cccccc;*/
+    }
+
+    .noUi-horizontal .noUi-handle:after,
+    .noUi-horizontal .noUi-handle:before {
+        content: none;
+    }
+
+    .noUi-connect {
+        background: #3FB8AF;
+        box-shadow: inset 0 0 3px rgba(51, 51, 51, .45);
+        background-color: #d9d9d9;
+        box-shadow: none;
+        background-color: #d9d9d9;
+    }
+
     .noUi-target {
-    border-radius: 4px;
-     border: none;
-     box-shadow: none;
-}
-.noUi-background {
-    background: #e9e9e9;
-     box-shadow: none;
-}
+        border-radius: 4px;
+        border: none;
+        box-shadow: none;
+    }
+
+    .noUi-background {
+        background: #e9e9e9;
+        box-shadow: none;
+    }
+
+    #delivery-arc {
+        /*position: relative;*/
+        width: 17vw;
+        height: 17vw;
+        margin-right: 6vw;
+        margin-top: 2rem;
+        margin-bottom: 2vw;
+    }
+
+    .cen {
+        position: relative;
+        top: -50%;
+        /*left: 50%;*/
+        transform: translateY(-85%);
+        /*transform: translateX(-50%);*/
+        text-align: center;
+        color: #43af64;
+        font-size:5vw;
+        /*2.3rem*/
+    }
+
+    .cen2 {
+        color: #43af64;
+        position: relative;
+        top: -100%;
+        transform: translateY(40%);
+        text-align: center;
+        font-size:3vw;
+
+        /*1.2rem*/
+    }
+    /* Extra Small Devices, Phones */
+
+    @media only screen and (min-width: 480px) {}
+    /* Small Devices, Tablets */
+
+    @media only screen and (min-width: 768px) {}
+    /* Medium Devices, Desktops */
+
+    @media only screen and (min-width: 992px) {}
+    /* Large Devices, Wide Screens */
+
+    @media only screen and (min-width: 1200px) {
+        #delivery-arc {
+            /*position: relative;*/
+            /*        width: 160px;
+        width: 95vh;
+        height: 160px;
+        margin-right: 15rem;
+        margin-top: 2rem;*/
+        }
+    }
     </style>
 </body>
 
