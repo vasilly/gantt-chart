@@ -28,7 +28,7 @@
     <link href="offcanvas.css" rel="stylesheet">
     <style>
     body {
-        padding: 3rem;
+        padding: 3.5rem;
     }
 
     body {
@@ -48,6 +48,8 @@
         margin-right: 0.8rem;
         margin-bottom: 1rem;
         border-radius: 4px;
+        font-size:1.4rem;
+height:3.6rem;
     }
 
     .button-myob.active {
@@ -71,7 +73,7 @@
     .control-label {
         margin-top: 2rem;
         font-weight: 600;
-        font-size: 1.3rem;
+        font-size: 1.6rem;
         margin-bottom: 1.2rem;
     }
 
@@ -89,14 +91,22 @@
         padding-left: 0;
     }
 
+
     .button-apply {
-        border-radius: 3rem;
+        width: 273px;
+        height: 50px;
+        height: 5rem;
+        border-radius: 130px;
+        border-radius: 13rem;
         border-width: 0;
-        color: white;
         background: #4daf70;
-        background: linear-gradient(to bottom, #5fda80 0%, #4daf70 100%);
+        background-image: linear-gradient(to bottom, #5bd982 0%, #48ab70 100%);
+        box-shadow: 0 2px 1px 0 #2b8e50;
+        border-top-color: transparent;
+        font-size: 1.6rem;
+        text-align: center;
+        color: #ffffff;
         margin-top: 2rem;
-        /* Fx 10+, Op 11.6+, Ch 26+, IE 10 */
     }
     /*bootstrap input iwith icon*/
 
@@ -193,7 +203,6 @@
         height: 81px;
         margin-right: 3.4rem;
         margin-top: 2rem;
-
         /*margin-left:15rem;*/
         /*// margin-top:10rem;*/
     }
@@ -249,18 +258,6 @@
         /*border: 1px solid red;*/
     }
     /*test button*/
-
-    .largeGreenButton {
-        width: 273px;
-        height: 50px;
-        border-radius: 130px;
-        background-image: linear-gradient(to top, #48ab70, #5bd982);
-        box-shadow: 0 2px 1px 0 #2b8e50;
-        border-top-color: transparent;
-                font-size: 16px;
-  text-align: center;
-  color: #ffffff;
-    }
     </style>
 </head>
 
@@ -368,15 +365,15 @@
                     <svg id="" viewBox="0 0 200 200">
                         <use xlink:href="#circlebackground" />
                     </svg>
-                    <div id="delivery-time-display" class="cen" style="font-size:2.5rem;">15</div>
-                    <div class="cen2" style="font-size:1.23rem;">mins</div>
+                    <div id="delivery-time-display" class="cen" style="font-size:2.3rem;">15</div>
+                    <div class="cen2" style="font-size:1.20rem;">mins</div>
                 </div>
                 <style>
                 .cen {
                     position: relative;
                     top: -50%;
                     /*left: 50%;*/
-                    transform: translateY(-75%);
+                    transform: translateY(-85%);
                     /*transform: translateX(-50%);*/
                     text-align: center;
                     color: #43af64;
@@ -385,8 +382,8 @@
                 .cen2 {
                     color: #43af64;
                     position: relative;
-                    top: -65%;
-                    transform: translateY(-150%);
+                    top: -100%;
+                    transform: translateY(40%);
                     text-align: center;
                 }
                 </style>
@@ -405,6 +402,7 @@
                     <label class="btn button-myob" id="btn-60">
                         <input type="radio" name="options">60 min
                     </label>
+
                 </div>
                 <!-- end radio-buttons -->
             </div>
@@ -424,38 +422,15 @@
     <br>
     <br>
     <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
 
-    <button type="submit" class="btn btn-lg btn-block largeGreenButton ">APPLY actual size</button>
-    <style>
-    .z-butn {
-        width: 64px;
-        height: 36px;
-        border-radius: 4px;
-        border: solid 1px #d0d0d0;
 
-    }
-    </style>
-    <div class="" data-toggle="buttons">
-        <label class="btn button-myob z-butn" id="btn-601">
-            <input type="radio" name="options">60 min
-        </label>
-    </div>
     <!-- end container blog -->
     <!-- bootstrap dropdown over-ride -->
     <!-- end bs over ride -->
     <h2>Original image from UX design document (below)</h2>
     <p>Objective: Create a responsive component that will work across different viewport sizes.</p>
     <p>IE10+, modern browsers & mobile</p>
-    <img src="Filter-cuisine-calories.png" alt="">
+    <img src="Filter-cuisine-calories.png" alt="" style="width:320px;">
     <br>
     <br>
     <br>
@@ -562,7 +537,7 @@
             $num.prop('Counter', 0).animate({
                 Counter: $num.text()
             }, {
-                duration: ms,
+                duration: ms || 400,
                 easing: 'swing',
                 step: function(now) {
                     $num.text(Math.ceil(now));
