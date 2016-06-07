@@ -55,7 +55,9 @@ body {
 .no-gutter > [class*='col-'] {
     padding-left: 0;
 }
-
+.delivery-time__btns{
+    margin-top:-2rem;
+}
 .button-apply {
     height: 50px;
     height: 5rem;
@@ -157,7 +159,7 @@ body {
     width: 81px;
     height: 81px;
     margin-right: 3.4rem;
-    margin-top: 2rem;
+    /*margin-top: 2rem;*/
 }
 
 #c1,
@@ -298,9 +300,16 @@ body {
 /* Large Devices, Wide Screens */
 
 @media only screen and (min-width: 1200px) {
-    .control-label {
+/*    .control-label {
         font-size: 1.8rem;
-    }
+    }*/
+
+.control-label {
+    margin-top: 2rem;
+    font-weight: 600;
+    font-size: 1.8rem;
+    margin-bottom: 1.4rem;
+}
     .minmax {
         font-size: 1.4rem;
     }
