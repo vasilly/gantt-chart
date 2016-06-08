@@ -20,23 +20,331 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,500' rel='stylesheet' type='text/css'>
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="myob.css">
+    <style>
+    body {
+        padding: 3.5rem;
+        font-family: 'Roboto', sans-serif;
+        color: #333;
+        background-color: #f5f5f5;
+    }
+
+    .title {
+        font-size: 18px;
+    }
+
+    .right-label {
+        cursor: pointer;
+    }
+
+    .button-myob {
+        background-color: #f5f5f5;
+        border: solid 1px #d0d0d0;
+        color: #d0d0d0;
+        box-shadow: none;
+        background-image: none;
+        margin-right: 0.8rem;
+        margin-bottom: 1rem;
+        border-radius: 4px;
+        font-size: 1.4rem;
+        height: 3.6rem;
+    }
+
+    .button-myob.active {
+        border-color: #5bd982;
+        color: #43AF64;
+        box-shadow: none;
+        border: solid 1px #5bd982;
+    }
+
+    .right-label {
+        border-color: #43AF64;
+        color: #43AF64;
+        font-size: 14px;
+        font-weight: 400;
+    }
+
+    .control-label {
+        margin-top: 2rem;
+        font-weight: 600;
+        font-size: 1.6rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .calories__subtitles {
+        font-weight: 400;
+        font-size: 1.2rem;
+    }
+
+    .no-gutter > [class*='col-'] {
+        padding-left: 0;
+    }
+
+    .delivery__btns {
+        margin-top: -2rem;
+    }
+
+    .button-apply {
+        height: 50px;
+        height: 5rem;
+        border-radius: 130px;
+        border-radius: 13rem;
+        border-width: 0;
+        background: #4daf70;
+        background-image: linear-gradient(to bottom, #5bd982 0%, #48ab70 100%);
+        box-shadow: 0 2px 1px 0 #2b8e50;
+        border-top-color: transparent;
+        font-size: 1.6rem;
+        text-align: center;
+        color: #ffffff;
+        margin-top: 0rem;
+    }
+
+    .button-apply.btn:hover,
+    .button-apply.btn:focus {
+        background-image: linear-gradient(to bottom, #48ab70 0%, #48ab70 100%);
+        color: #ffffff !important;
+    }
+
+    .btn.focus,
+    .btn:hover {
+        color: #333;
+        text-decoration: none;
+        transition: ;
+    }
+    /*------------------------------*/
+    /*bootstrap-select over-rides*/
+    /*------------------------------*/
+
+    .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+        width: 100%;
+    }
+
+    .bootstrap-select {
+        border-color: transparent;
+    }
+    /*bootstrap input iwith icon*/
+
+    .left-inner-addon {
+        position: relative;
+        /*border: 1px solid grey;*/
+    }
+
+    .left-inner-addon i {
+        position: absolute;
+        padding: 7px 12px;
+        background: transparent;
+        pointer-events: none;
+        left: 0;
+        /*top: 50px;*/
+        color: #d5d4d4;
+    }
+
+    .left-inner-addon input {
+        padding-left: 30px;
+    }
+
+    .bootstrap-select,
+    .bootstrap-select .btn,
+    .bootstrap-select .btn .filter-option,
+    .bootstrap-select .btn-default.active,
+    .bootstrap-select .btn-default:active,
+    .bootstrap-select.open>.dropdown-toggle.btn-default:hover,
+    .bootstrap-select.open>.dropdown-toggle.btn-default {
+        background-color: #fff;
+        background-image: none;
+        color: #333333;
+        /*border-color: #8c8c8c;*/
+    }
+
+    .bootstrap-select .btn span,
+    .bootstrap-select .btn .filter-option i {
+        color: #b1b1b1;
+        ;
+    }
+    /*------------------------------*/
+    /*svg delivery arcs*/
+    /*------------------------------*/
+
+    .delivery__arcs {
+        position: relative;
+        width: 81px;
+        height: 81px;
+        margin-right: 3.4rem;
+        float:left;
+        /*margin-top: 2rem;*/
+    }
+
+    .delivery__arc-1,
+    .delivery__arc-2,
+    .delivery__arc-3 {
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .delivery__arcs.c30 .delivery__arc-2,
+    .delivery__arcs.c30 .delivery__arc-3,
+    .delivery__arcs.c30 .delivery__arc-4 {
+        transform: rotateZ(90deg);
+    }
+
+    .delivery__arcs.c45 .delivery__arc-3,
+    .delivery__arcs.c45 .delivery__arc-4 {
+        transform: rotateZ(180deg);
+    }
+
+    .delivery__arcs.c60 .delivery__arc-4 {
+        transform: rotateZ(270deg);
+    }
+
+    .delivery__arc-1,
+    .delivery__arc-2,
+    .delivery__arc-3,
+    .delivery__arc-4 {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        transition: transform 0.35s ease-in-out 0.05s;
+    }
+    /*    .center {
+            text-align: center;
+            vertical-align: middle;
+            display: table-cell
+        }*/
+    /*------------------------------*/
+    /*end svg delivery arcs*/
+    /*------------------------------*/
+
+    .delivery__minutes-lg {
+        position: relative;
+        top: -50%;
+        /*left: 50%;*/
+        transform: translateY(-80%);
+        /*transform: translateX(-50%);*/
+        text-align: center;
+        color: #43af64;
+        font-size: 2.3rem;
+    }
+
+    .delivery__minutes-sm {
+        color: #43af64;
+        position: relative;
+        top: -100%;
+        transform: translateY(40%);
+        text-align: center;
+        font-size: 1.20rem;
+    }
+    /*------------------------------*/
+    /*ui-slider*/
+    /*------------------------------*/
+
+    #cal-input-range {
+        height: 6px;
+        margin: 0 auto 30px;
+    }
+
+    .noUi-handle {
+        border: none;
+    }
+
+    .noUi-horizontal .noUi-handle {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 17px;
+        cursor: default;
+        top: -0.7rem;
+        background: linear-gradient(to bottom, #5fda80 0%, #4daf70 100%);
+    }
+
+    .noUi-horizontal .noUi-handle:after,
+    .noUi-horizontal .noUi-handle:before {
+        content: none;
+    }
+
+    .noUi-connect {
+        background: #3FB8AF;
+        box-shadow: inset 0 0 3px rgba(51, 51, 51, .45);
+        background-color: #d9d9d9;
+        box-shadow: none;
+        background-color: #d9d9d9;
+    }
+
+    .noUi-target {
+        border-radius: 4px;
+        border: none;
+        box-shadow: none;
+    }
+
+    .noUi-background {
+        background: #e9e9e9;
+        box-shadow: none;
+    }
+    /* Extra Small Devices, Phones */
+
+    @media only screen and (min-width: 480px) {}
+    /* Small Devices, Tablets */
+
+    @media only screen and (min-width: 768px) {}
+    /* Medium Devices, Desktops */
+
+    @media only screen and (min-width: 992px) {}
+    /* Large Devices, Wide Screens */
+
+    @media only screen and (min-width: 1200px) {
+        /*    .control-label {
+            font-size: 1.8rem;
+        }*/
+        .title {
+            font-size: 2.4rem;
+        }
+        .control-label {
+            margin-top: 2rem;
+            font-weight: 600;
+            /*font-size: 1.6rem; original*/
+            font-size: 1.8rem;
+            margin-bottom: 1.4rem;
+        }
+        .calories__subtitles {
+            font-size: 1.4rem;
+        }
+        .form-control,
+        .filter-option,
+        .right-label {
+            font-size: 1.6rem;
+        }
+        .delivery__arcs {
+            width: 8rem;
+            height: 8rem;
+            margin-bottom: 2rem;
+        }
+    }
+
+    .border {
+        /*border:1px solid red;*/
+    }
+    /*widen gutter on desktop*/
+
+    @media (min-width: 768px) {
+        .container {
+            max-width: 730px;
+        }
+    }
+    </style>
 </head>
 
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-xs-12  col-sm-12  col-md-10  col-md-offset-1 col-lg-offset-1">
+            <div class="col-xs-12">
                 <h4 class="title">Filter<span id="resetSwitch" class=" pull-right right-label">Reset filters</span></h4>
             </div>
         </div>
         <div class="row">
             <!-- Cuisine -->
             <!-- ----- -->
-            <div class="border form-group col-sm-6 col-md-5 col-md-offset-1 col-lg-offset-1 col-lg-5  ">
+            <div class="border form-group col-sm-6  ">
                 <label class="control-label">Cuisine Type</label>
-                <div class="" data-toggle="buttons">
+                <div data-toggle="buttons">
                     <label id="btnBreakfast" class="btn button-myob active">
-                        <input type="radio" name="options" class="">Breakfast
+                        <input type="radio" name="options">Breakfast
                     </label>
                     <label class="btn button-myob">
                         <input type="radio" name="options" id="btnLunch">Lunch
@@ -48,7 +356,7 @@
             </div>
             <!-- Sort By -->
             <!-- ----- -->
-            <div class="border form-group col-sm-6 col-sm-6 col-md-5 col-lg-5 ">
+            <div class="border form-group col-sm-6">
                 <label class="control-label">Sort by</label>
                 <div data-toggle="buttons">
                     <label id="btnPopular" class="btn button-myob active">
@@ -59,30 +367,35 @@
                     </label>
                 </div>
             </div>
+            <!-- <div class="visible-lg-2 col-lg-1 insertion border" >test</div> -->
             <!-- Calories -->
+            <!--        .calories
+            calories__subtitles
+#cal-input-max
+#cal-input-min
+#cal-input-range
+            -->
             <!-- ----- -->
-            <div class="border form-group col-sm-12 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 ">
-                <label class="control-label" for="inputEmail">Calories</label>
+            <div class="border form-group col-sm-12">
+                <label class="control-label">Calories</label>
                 <div class="row">
                     <div class="col-xs-6 col-lg-6">
-                        <label class="minmax" for="code">Min</label>
-                        <!-- <input id="minValue" value="20" class="form-control" type="text"> -->
-                        <input id="val-input-min" class="form-control">
+                        <label class="calories__subtitles">Min</label>
+                        <input id="cal-input-min" class="form-control">
                     </div>
                     <div class="col-xs-6 col-lg-6">
-                        <label class="minmax" for="code">Max</label>
-                        <!-- <input id="maxValue" value="180" class="form-control input-normal" type="text"> -->
-                        <input id="val-input-max" class="form-control">
+                        <label class="calories__subtitles">Max</label>
+                        <input id="cal-input-max" class="form-control">
                     </div>
                     <div class="col-xs-12 col-lg-12" style="padding-top:2rem;padding-bottom:0rem;">
-                        <div id="range"></div>
+                        <div id="cal-input-range"></div>
                     </div>
                 </div>
             </div>
+            <!-- select -->
+            <!-- loc -->
             <!-- --- -->
-            <!-- tidiey -->
-            <!-- latest select -->
-            <div class="border form-group col-xs-12    col-sm-6 col-md-5 col-md-offset-1 col-lg-5 col-lg-offset-1">
+            <div class="border form-group col-xs-12    col-sm-6">
                 <label class="control-label">Location</label>
                 <div class="no-gutter">
                     <select class="selectpicker">
@@ -91,60 +404,75 @@
                     </select>
                 </div>
             </div>
-            <!-- Delivery time -->
-            <!-- ----- -->
-            <div class="border form-group col-xs-12 col-sm-6 col-md-5  col-lg-5 ">
+            <!-- Delivery time
+            .delivery
+            .delivery__arcs
+            .delivery__arc-1
+            .delivery__arc-2
+            .delivery__arc-3
+            .delivery__arc-4
+            .delivery__minutes-lg
+            .delivery__minutes-sm
+            -->
+            <div id="" class="delivery border form-group col-xs-12 col-sm-6">
                 <div class="row1 no-gutter1">
                     <label class="control-label">Delivery time</label>
                 </div>
                 <!-- svg -->
                 <svg class="defs-only" xmlns="http://www.w3.org/2000/svg" width="0" height="0">
-                    <symbol id="quarterarc">
+                    <symbol id="defs-quarterarc">
                         <path d="M190 100 A 90 90, 0, 0, 0, 100 10" stroke="#61dd82" stroke-width="20" stroke-linecap="round" fill="#fff" />
                     </symbol>
-                    <symbol id="circlebackground">
+                    <symbol id="defs-circlebackground">
                         <circle r="90" cx="100" cy="100" fill="white" stroke="#dfdfdf" stroke-width="20"></circle>
                     </symbol>
                 </svg>
-                <div id="delivery-arc" style="float:left;">
-                    <svg id="c1" viewBox="0 0 200 200">
-                        <use xlink:href="#quarterarc" />
+                <div class="delivery__arcs">
+                    <svg class="delivery__arc-1" viewBox="0 0 200 200">
+                        <use xlink:href="#defs-quarterarc" />
                     </svg>
-                    <svg id="c2" viewBox="0 0 200 200">
-                        <use xlink:href="#quarterarc" />
+                    <svg class="delivery__arc-2" viewBox="0 0 200 200">
+                        <use xlink:href="#defs-quarterarc" />
                     </svg>
-                    <svg id="c3" viewBox="0 0 200 200">
-                        <use xlink:href="#quarterarc" />
+                    <svg class="delivery__arc-3" viewBox="0 0 200 200">
+                        <use xlink:href="#defs-quarterarc" />
                     </svg>
-                    <svg id="c4" viewBox="0 0 200 200">
-                        <use xlink:href="#quarterarc" />
+                    <svg class="delivery__arc-4" viewBox="0 0 200 200">
+                        <use xlink:href="#defs-quarterarc" />
                     </svg>
-                    <svg id="" viewBox="0 0 200 200">
-                        <use xlink:href="#circlebackground" />
+                    <svg viewBox="0 0 200 200">
+                        <use xlink:href="#defs-circlebackground" />
                     </svg>
-                    <div id="delivery-time-display" class="txtMin">15</div>
-                    <div class="txtMins">mins</div>
+                    <div class="delivery__minutes-lg">15</div>
+                    <div class="delivery__minutes-sm">mins</div>
                 </div>
-                <!-- end delivery-arcs -->
+                <!-- end delivery__arcs
+                    .delivery__btns
+                    #btn-15
+                    #btn-30
+                    #btn-45
+                    #btn-60
+                    -->
                 <!-- svg end -->
-                <div class="delivery-time__btns" data-toggle="buttons">
-                    <label id1="btn-15" id="btn-15" class="btn button-myob active">
-                        <input type="radio" name="options" class="">15 min
+                <div class="delivery__btns" data-toggle="buttons">
+                    <label id="btn-15" class="btn button-myob active">
+                        <input type="radio" name="options">15 min
                     </label>
-                    <label class="btn button-myob" id="btn-30">
+                    <label id="btn-30" class="btn button-myob">
                         <input type="radio" name="options">30 min
                     </label>
-                    <label class="btn button-myob" id="btn-45">
+                    <label id="btn-45" class="btn button-myob">
                         <input type="radio" name="options">45 min
                     </label>
-                    <label class="btn button-myob" id="btn-60">
+                    <label id="btn-60" class="btn button-myob">
                         <input type="radio" name="options">60 min
                     </label>
                 </div>
                 <!-- end radio-buttons -->
             </div>
+            <!-- end delivery-time -->
             <!-- call-to-action button -->
-            <div class="border form-group col-xs-12 col-sm-8 col-sm-offset-2  col-md-6 col-md-offset-3  ">
+            <div class="border form-group col-xs-12  ">
                 <button type="submit" class="btn btn-lg btn-block button-apply ">APPLY FILTER</button>
             </div>
             <!-- ----- -->
@@ -166,6 +494,94 @@
     <script src="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
     <script src="myob.js"></script>
+    <script>
+    $(function() {
+        // $('#new-spot').html(  $('#copy-me').clone() );
+        // document.querySelector('#new-spot').innerHTML=document.querySelector('#copy-me').innerHTML;
+
+        $('#btn-15').click(function() {
+            updateTimeArcs("", "15");
+        });
+
+        $('#btn-30').click(function() {
+            updateTimeArcs("c30", "30");
+        });
+
+        $('#btn-45').click(function() {
+            updateTimeArcs("c30 c45", "45");
+        });
+
+        $('#btn-60').click(function() {
+            updateTimeArcs("c30 c45 c60", "60");
+        });
+
+        function updateTimeArcs(addClasses, displayText) {
+            var $display = $('.delivery__minutes-lg');
+            var originalNumber = $display.text();
+            $('.delivery__arcs').removeClass("c30 c45 c60").addClass(addClasses);
+            $display.text(displayText);
+            animateNumbers('.delivery__minutes-lg', 500, originalNumber)
+        }
+
+        $('#resetSwitch').click(function() {
+            var $reset = $('#resetSwitch');
+            $('.btn').removeClass('active');
+            $('#btnBreakfast, #btnPopular, #btn-15').addClass('active');
+            updateTimeArcs("", "15");
+            $('#cal-input-min').val('20');
+            $('#cal-input-max').val('180');
+            range.noUiSlider.set([20, 180]);
+        });
+
+        function animateNumbers(id, ms, oldNum) {
+            var $num = $(id)
+            $num.prop('Counter', oldNum).animate({
+                Counter: $num.text()
+            }, {
+                duration: ms || 400,
+                easing: 'swing',
+                step: function(now) {
+                    $num.text(Math.ceil(now));
+                }
+            });
+        }
+
+        var range = document.getElementById('cal-input-range');
+
+        noUiSlider.create(range, {
+            start: [20, 180],
+            step: 1,
+            margin: 20,
+            connect: true,
+            behaviour: 'tap-drag',
+            range: {
+                'min': 0,
+                'max': 200
+            }
+        });
+        // Connect the input to the slider
+        var valueMax = document.getElementById('cal-input-max'),
+            valueMin = document.getElementById('cal-input-min');
+
+        // When the slider value changes, update the input and span
+        range.noUiSlider.on('update', function(values, handle) {
+            if (handle) {
+                valueMax.value = values[handle];
+            } else {
+                valueMin.value = values[handle];
+            }
+        });
+
+        // When the input changes, set the slider value
+        valueMax.addEventListener('change', function() {
+            range.noUiSlider.set([null, this.value]);
+        });
+        valueMin.addEventListener('change', function() {
+            range.noUiSlider.set([this.value, null]);
+        });
+        // dom ready
+    });
+    </script>
 </body>
 
 </html>
